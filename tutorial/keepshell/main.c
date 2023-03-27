@@ -6,7 +6,6 @@
 #include "token.h"
 
 extern void excute();
-extern void parser();
 extern token *tokenize(char *);
 
 // void handler(int sig)
@@ -18,28 +17,27 @@ extern token *tokenize(char *);
 int main()
 {
     char line[256];
-    // memset(line, '\0', sizeof(line));
+
     // struct sigaction act;
     // memset(&act, 0, sizeof(act));
     // act.sa_handler = handler;
     // sigaction(SIGINT, &act, NULL);
 
-    while (1)
+    for (;;)
     {
+
         printf("$ ");
         fgets(line, sizeof(line), stdin);
-
         line[strlen(line) - 1] = '\0';
         token *com = tokenize(line);
-
         if (strcmp(com->str, "exit") == 0)
         {
             exit(0);
         }
-        if (strcmp(com->str, "cd") == 0)
+        else if (strcmp(com->str, "cd") == 0)
         {
 
-            if ((com->next) == NULL)
+            if ((com->next->str) == NULL)
             {
                 chdir(getenv("HOME"));
             }
@@ -53,9 +51,8 @@ int main()
         }
         else
         {
-            parser(com);
+            excute(com);
         }
-        // memset(line, 0, sizeof(line));
     }
 
     return 0;

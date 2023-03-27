@@ -12,21 +12,32 @@ token *tokenize(char *line)
     current = head;
     char *p = strtok(line, " ");
     current->str = p;
-    while (p != NULL)
+    current->kind = TK_COMMAND;
+    current->next = NULL;
+
+    while (1)
     {
+        p = strtok(NULL, " ");
+        if (p == NULL)
+            break;
         prev = current;
         current = (token *)malloc(sizeof(token));
         prev->next = current;
-        p = strtok(NULL, " ");
+        current->next = NULL;
+
         current->str = p;
+
+        if (strncmp(p, ">", 1) == 0)
+            current->kind = TK_OUT;
+        else if (strncmp(p, "<", 1) == 0)
+            current->kind = TK_IN;
+        else if (strncmp(p, "2>", 2) == 0)
+            current->kind = TK_ERR;
+        else if (strncmp(p, "|", 1) == 0)
+            current->kind = TK_PIPE;
+        else
+            current->kind = TK_COMMAND;
     }
 
-    // // debag
-    // token *q = head;
-    // while (q != NULL)
-    // {
-    //     printf("%s\n", q->str);
-    //     q = q->next;
-    // }
     return head;
 }
