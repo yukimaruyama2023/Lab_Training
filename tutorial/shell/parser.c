@@ -32,6 +32,8 @@ char *search_path(char *p)
             return path_canditate;
         }
     }
+    puts("no such file");
+    exit(1);
 }
 
 void core_execute(char **command)
@@ -60,8 +62,9 @@ void parser(token *p)
     int flagout = 0;
     int flagerr = 0;
     char *command[100];
-    memset(command, 0, 100);
+    memset(command, 0, sizeof(command));
     int i = 0;
+
     while (p != NULL)
     {
 
@@ -110,16 +113,23 @@ void parser(token *p)
         case TK_PIPE:
             int pipefds[2];
             pipe(pipefds);
-            dup2(pipefds[1], 1);
+            if (dup2(pipefds[1], 1) < 0)
+            {
+                perror("dup2");
+            };
             close(pipefds[1]);
 
             core_execute(command);
 
             i = 0;
+            memset(command, 0, sizeof(command));
             dup2(pipefds[0], 0);
+            flagin++;
+            dup2(backupout, 1);
             close(pipefds[0]);
             p = p->next;
             continue;
+
         default:
             puts("default");
         }
@@ -132,7 +142,7 @@ void parser(token *p)
     }
     if (flagout > 0)
     {
-        dup2(backupin, 1);
+        dup2(backupout, 1);
         close(backupout);
     }
     if (flagerr > 0)
