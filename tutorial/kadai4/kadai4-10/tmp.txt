@@ -1,0 +1,1003 @@
+
+4-10:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000002130 <_start>:
+    2130:	f3 0f 1e fa          	endbr64 
+    2134:	31 ed                	xor    %ebp,%ebp
+    2136:	49 89 d1             	mov    %rdx,%r9
+    2139:	5e                   	pop    %rsi
+    213a:	48 89 e2             	mov    %rsp,%rdx
+    213d:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp
+    2141:	50                   	push   %rax
+    2142:	54                   	push   %rsp
+    2143:	45 31 c0             	xor    %r8d,%r8d
+    2146:	31 c9                	xor    %ecx,%ecx
+    2148:	48 8d 3d 6c 01 00 00 	lea    0x16c(%rip),%rdi        # 22bb <main>
+    214f:	ff 15 a3 2e 00 00    	call   *0x2ea3(%rip)        # 4ff8 <__libc_start_main@GLIBC_2.34>
+    2155:	f4                   	hlt    
+    2156:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+    215d:	00 00 00 
+
+0000000000002160 <deregister_tm_clones>:
+    2160:	48 8d 3d d9 33 00 00 	lea    0x33d9(%rip),%rdi        # 5540 <__asan_option_detect_stack_use_after_return@@Base>
+    2167:	48 8d 05 d2 33 00 00 	lea    0x33d2(%rip),%rax        # 5540 <__asan_option_detect_stack_use_after_return@@Base>
+    216e:	48 39 f8             	cmp    %rdi,%rax
+    2171:	74 15                	je     2188 <deregister_tm_clones+0x28>
+    2173:	48 8b 05 66 2e 00 00 	mov    0x2e66(%rip),%rax        # 4fe0 <_ITM_deregisterTMCloneTable@Base>
+    217a:	48 85 c0             	test   %rax,%rax
+    217d:	74 09                	je     2188 <deregister_tm_clones+0x28>
+    217f:	ff e0                	jmp    *%rax
+    2181:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+    2188:	c3                   	ret    
+    2189:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+
+0000000000002190 <register_tm_clones>:
+    2190:	48 8d 3d a9 33 00 00 	lea    0x33a9(%rip),%rdi        # 5540 <__asan_option_detect_stack_use_after_return@@Base>
+    2197:	48 8d 35 a2 33 00 00 	lea    0x33a2(%rip),%rsi        # 5540 <__asan_option_detect_stack_use_after_return@@Base>
+    219e:	48 29 fe             	sub    %rdi,%rsi
+    21a1:	48 89 f0             	mov    %rsi,%rax
+    21a4:	48 c1 ee 3f          	shr    $0x3f,%rsi
+    21a8:	48 c1 f8 03          	sar    $0x3,%rax
+    21ac:	48 01 c6             	add    %rax,%rsi
+    21af:	48 d1 fe             	sar    %rsi
+    21b2:	74 14                	je     21c8 <register_tm_clones+0x38>
+    21b4:	48 8b 05 2d 2e 00 00 	mov    0x2e2d(%rip),%rax        # 4fe8 <_ITM_registerTMCloneTable@Base>
+    21bb:	48 85 c0             	test   %rax,%rax
+    21be:	74 08                	je     21c8 <register_tm_clones+0x38>
+    21c0:	ff e0                	jmp    *%rax
+    21c2:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+    21c8:	c3                   	ret    
+    21c9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+
+00000000000021d0 <__do_global_dtors_aux>:
+    21d0:	f3 0f 1e fa          	endbr64 
+    21d4:	80 3d 69 33 00 00 00 	cmpb   $0x0,0x3369(%rip)        # 5544 <completed.0>
+    21db:	75 2b                	jne    2208 <__do_global_dtors_aux+0x38>
+    21dd:	55                   	push   %rbp
+    21de:	48 83 3d 0a 2e 00 00 	cmpq   $0x0,0x2e0a(%rip)        # 4ff0 <__cxa_finalize@GLIBC_2.2.5>
+    21e5:	00 
+    21e6:	48 89 e5             	mov    %rsp,%rbp
+    21e9:	74 0c                	je     21f7 <__do_global_dtors_aux+0x27>
+    21eb:	48 8b 3d 16 2e 00 00 	mov    0x2e16(%rip),%rdi        # 5008 <__dso_handle>
+    21f2:	e8 29 ff ff ff       	call   2120 <__cxa_finalize@plt>
+    21f7:	e8 64 ff ff ff       	call   2160 <deregister_tm_clones>
+    21fc:	c6 05 41 33 00 00 01 	movb   $0x1,0x3341(%rip)        # 5544 <completed.0>
+    2203:	5d                   	pop    %rbp
+    2204:	c3                   	ret    
+    2205:	0f 1f 00             	nopl   (%rax)
+    2208:	c3                   	ret    
+    2209:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+
+0000000000002210 <frame_dummy>:
+    2210:	f3 0f 1e fa          	endbr64 
+    2214:	e9 77 ff ff ff       	jmp    2190 <register_tm_clones>
+
+0000000000002219 <thread>:
+    2219:	f3 0f 1e fa          	endbr64 
+    221d:	55                   	push   %rbp
+    221e:	48 89 e5             	mov    %rsp,%rbp
+    2221:	48 83 ec 20          	sub    $0x20,%rsp
+    2225:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    2229:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)
+    2230:	83 7d fc 0a          	cmpl   $0xa,-0x4(%rbp)
+    2234:	75 0a                	jne    2240 <thread+0x27>
+    2236:	b8 00 00 00 00       	mov    $0x0,%eax
+    223b:	e8 00 09 00 00       	call   2b40 <suthread_exit>
+    2240:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2244:	48 89 c2             	mov    %rax,%rdx
+    2247:	48 c1 ea 03          	shr    $0x3,%rdx
+    224b:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    2252:	0f b6 12             	movzbl (%rdx),%edx
+    2255:	84 d2                	test   %dl,%dl
+    2257:	40 0f 95 c6          	setne  %sil
+    225b:	48 89 c1             	mov    %rax,%rcx
+    225e:	83 e1 07             	and    $0x7,%ecx
+    2261:	83 c1 03             	add    $0x3,%ecx
+    2264:	38 d1                	cmp    %dl,%cl
+    2266:	0f 9d c2             	setge  %dl
+    2269:	21 f2                	and    %esi,%edx
+    226b:	84 d2                	test   %dl,%dl
+    226d:	74 08                	je     2277 <thread+0x5e>
+    226f:	48 89 c7             	mov    %rax,%rdi
+    2272:	e8 19 fe ff ff       	call   2090 <__asan_report_load4@plt>
+    2277:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    227b:	8b 00                	mov    (%rax),%eax
+    227d:	89 c6                	mov    %eax,%esi
+    227f:	48 8d 05 9a 0d 00 00 	lea    0xd9a(%rip),%rax        # 3020 <_IO_stdin_used+0x20>
+    2286:	48 89 c7             	mov    %rax,%rdi
+    2289:	b8 00 00 00 00       	mov    $0x0,%eax
+    228e:	e8 6d fe ff ff       	call   2100 <printf@plt>
+    2293:	b8 00 00 00 00       	mov    $0x0,%eax
+    2298:	e8 8e 08 00 00       	call   2b2b <suthread_yield>
+    229d:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+    22a1:	eb 8d                	jmp    2230 <thread+0x17>
+
+00000000000022a3 <add>:
+    22a3:	f3 0f 1e fa          	endbr64 
+    22a7:	55                   	push   %rbp
+    22a8:	48 89 e5             	mov    %rsp,%rbp
+    22ab:	89 7d fc             	mov    %edi,-0x4(%rbp)
+    22ae:	89 75 f8             	mov    %esi,-0x8(%rbp)
+    22b1:	8b 55 fc             	mov    -0x4(%rbp),%edx
+    22b4:	8b 45 f8             	mov    -0x8(%rbp),%eax
+    22b7:	01 d0                	add    %edx,%eax
+    22b9:	5d                   	pop    %rbp
+    22ba:	c3                   	ret    
+
+00000000000022bb <main>:
+    22bb:	f3 0f 1e fa          	endbr64 
+    22bf:	55                   	push   %rbp
+    22c0:	48 89 e5             	mov    %rsp,%rbp
+    22c3:	41 54                	push   %r12
+    22c5:	53                   	push   %rbx
+    22c6:	48 81 ec e0 00 00 00 	sub    $0xe0,%rsp
+    22cd:	4c 8d a5 10 ff ff ff 	lea    -0xf0(%rbp),%r12
+    22d4:	83 3d 65 32 00 00 00 	cmpl   $0x0,0x3265(%rip)        # 5540 <__asan_option_detect_stack_use_after_return@@Base>
+    22db:	74 12                	je     22ef <main+0x34>
+    22dd:	bf c0 00 00 00       	mov    $0xc0,%edi
+    22e2:	e8 69 fd ff ff       	call   2050 <__asan_stack_malloc_2@plt>
+    22e7:	48 85 c0             	test   %rax,%rax
+    22ea:	74 03                	je     22ef <main+0x34>
+    22ec:	49 89 c4             	mov    %rax,%r12
+    22ef:	49 8d 84 24 e0 00 00 	lea    0xe0(%r12),%rax
+    22f6:	00 
+    22f7:	48 89 c3             	mov    %rax,%rbx
+    22fa:	49 c7 04 24 b3 8a b5 	movq   $0x41b58ab3,(%r12)
+    2301:	41 
+    2302:	48 8d 05 57 0d 00 00 	lea    0xd57(%rip),%rax        # 3060 <_IO_stdin_used+0x60>
+    2309:	49 89 44 24 08       	mov    %rax,0x8(%r12)
+    230e:	48 8d 05 a6 ff ff ff 	lea    -0x5a(%rip),%rax        # 22bb <main>
+    2315:	49 89 44 24 10       	mov    %rax,0x10(%r12)
+    231a:	4c 89 e0             	mov    %r12,%rax
+    231d:	48 c1 e8 03          	shr    $0x3,%rax
+    2321:	c7 80 00 80 ff 7f f1 	movl   $0xf1f1f1f1,0x7fff8000(%rax)
+    2328:	f1 f1 f1 
+    232b:	c7 80 04 80 ff 7f f1 	movl   $0xf204f1f1,0x7fff8004(%rax)
+    2332:	f1 04 f2 
+    2335:	c7 80 08 80 ff 7f 04 	movl   $0xf204f204,0x7fff8008(%rax)
+    233c:	f2 04 f2 
+    233f:	c7 80 0c 80 ff 7f 04 	movl   $0xf204f204,0x7fff800c(%rax)
+    2346:	f2 04 f2 
+    2349:	c7 80 10 80 ff 7f 04 	movl   $0xf204f204,0x7fff8010(%rax)
+    2350:	f2 04 f2 
+    2353:	c7 80 14 80 ff 7f 04 	movl   $0xf3f3f304,0x7fff8014(%rax)
+    235a:	f3 f3 f3 
+    235d:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+    2364:	00 00 
+    2366:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+    236a:	31 c0                	xor    %eax,%eax
+    236c:	48 8d 83 50 ff ff ff 	lea    -0xb0(%rbx),%rax
+    2373:	48 89 c2             	mov    %rax,%rdx
+    2376:	48 89 d0             	mov    %rdx,%rax
+    2379:	48 c1 e8 03          	shr    $0x3,%rax
+    237d:	48 05 00 80 ff 7f    	add    $0x7fff8000,%rax
+    2383:	0f b6 00             	movzbl (%rax),%eax
+    2386:	84 c0                	test   %al,%al
+    2388:	0f 95 c1             	setne  %cl
+    238b:	3c 03                	cmp    $0x3,%al
+    238d:	0f 9e c0             	setle  %al
+    2390:	21 c8                	and    %ecx,%eax
+    2392:	84 c0                	test   %al,%al
+    2394:	74 08                	je     239e <main+0xe3>
+    2396:	48 89 d7             	mov    %rdx,%rdi
+    2399:	e8 12 fd ff ff       	call   20b0 <__asan_report_store4@plt>
+    239e:	c7 83 50 ff ff ff 01 	movl   $0x1,-0xb0(%rbx)
+    23a5:	00 00 00 
+    23a8:	48 8d 83 50 ff ff ff 	lea    -0xb0(%rbx),%rax
+    23af:	ba 28 23 00 00       	mov    $0x2328,%edx
+    23b4:	48 89 c6             	mov    %rax,%rsi
+    23b7:	48 8d 05 5b fe ff ff 	lea    -0x1a5(%rip),%rax        # 2219 <thread>
+    23be:	48 89 c7             	mov    %rax,%rdi
+    23c1:	e8 d3 02 00 00       	call   2699 <suthread_create>
+    23c6:	48 89 05 93 31 00 00 	mov    %rax,0x3193(%rip)        # 5560 <th_1>
+    23cd:	48 8d 83 60 ff ff ff 	lea    -0xa0(%rbx),%rax
+    23d4:	48 89 c2             	mov    %rax,%rdx
+    23d7:	48 89 d0             	mov    %rdx,%rax
+    23da:	48 c1 e8 03          	shr    $0x3,%rax
+    23de:	48 05 00 80 ff 7f    	add    $0x7fff8000,%rax
+    23e4:	0f b6 00             	movzbl (%rax),%eax
+    23e7:	84 c0                	test   %al,%al
+    23e9:	0f 95 c1             	setne  %cl
+    23ec:	3c 03                	cmp    $0x3,%al
+    23ee:	0f 9e c0             	setle  %al
+    23f1:	21 c8                	and    %ecx,%eax
+    23f3:	84 c0                	test   %al,%al
+    23f5:	74 08                	je     23ff <main+0x144>
+    23f7:	48 89 d7             	mov    %rdx,%rdi
+    23fa:	e8 b1 fc ff ff       	call   20b0 <__asan_report_store4@plt>
+    23ff:	c7 83 60 ff ff ff 02 	movl   $0x2,-0xa0(%rbx)
+    2406:	00 00 00 
+    2409:	48 8d 83 60 ff ff ff 	lea    -0xa0(%rbx),%rax
+    2410:	ba 28 23 00 00       	mov    $0x2328,%edx
+    2415:	48 89 c6             	mov    %rax,%rsi
+    2418:	48 8d 05 fa fd ff ff 	lea    -0x206(%rip),%rax        # 2219 <thread>
+    241f:	48 89 c7             	mov    %rax,%rdi
+    2422:	e8 72 02 00 00       	call   2699 <suthread_create>
+    2427:	48 89 05 72 31 00 00 	mov    %rax,0x3172(%rip)        # 55a0 <th_2>
+    242e:	48 8d 83 70 ff ff ff 	lea    -0x90(%rbx),%rax
+    2435:	48 89 c2             	mov    %rax,%rdx
+    2438:	48 89 d0             	mov    %rdx,%rax
+    243b:	48 c1 e8 03          	shr    $0x3,%rax
+    243f:	48 05 00 80 ff 7f    	add    $0x7fff8000,%rax
+    2445:	0f b6 00             	movzbl (%rax),%eax
+    2448:	84 c0                	test   %al,%al
+    244a:	0f 95 c1             	setne  %cl
+    244d:	3c 03                	cmp    $0x3,%al
+    244f:	0f 9e c0             	setle  %al
+    2452:	21 c8                	and    %ecx,%eax
+    2454:	84 c0                	test   %al,%al
+    2456:	74 08                	je     2460 <main+0x1a5>
+    2458:	48 89 d7             	mov    %rdx,%rdi
+    245b:	e8 50 fc ff ff       	call   20b0 <__asan_report_store4@plt>
+    2460:	c7 83 70 ff ff ff 03 	movl   $0x3,-0x90(%rbx)
+    2467:	00 00 00 
+    246a:	48 8d 83 70 ff ff ff 	lea    -0x90(%rbx),%rax
+    2471:	ba 28 23 00 00       	mov    $0x2328,%edx
+    2476:	48 89 c6             	mov    %rax,%rsi
+    2479:	48 8d 05 99 fd ff ff 	lea    -0x267(%rip),%rax        # 2219 <thread>
+    2480:	48 89 c7             	mov    %rax,%rdi
+    2483:	e8 11 02 00 00       	call   2699 <suthread_create>
+    2488:	48 89 05 51 31 00 00 	mov    %rax,0x3151(%rip)        # 55e0 <th_3>
+    248f:	48 8d 43 80          	lea    -0x80(%rbx),%rax
+    2493:	48 89 c2             	mov    %rax,%rdx
+    2496:	48 89 d0             	mov    %rdx,%rax
+    2499:	48 c1 e8 03          	shr    $0x3,%rax
+    249d:	48 05 00 80 ff 7f    	add    $0x7fff8000,%rax
+    24a3:	0f b6 00             	movzbl (%rax),%eax
+    24a6:	84 c0                	test   %al,%al
+    24a8:	0f 95 c1             	setne  %cl
+    24ab:	3c 03                	cmp    $0x3,%al
+    24ad:	0f 9e c0             	setle  %al
+    24b0:	21 c8                	and    %ecx,%eax
+    24b2:	84 c0                	test   %al,%al
+    24b4:	74 08                	je     24be <main+0x203>
+    24b6:	48 89 d7             	mov    %rdx,%rdi
+    24b9:	e8 f2 fb ff ff       	call   20b0 <__asan_report_store4@plt>
+    24be:	c7 43 80 04 00 00 00 	movl   $0x4,-0x80(%rbx)
+    24c5:	48 8d 43 80          	lea    -0x80(%rbx),%rax
+    24c9:	ba 28 23 00 00       	mov    $0x2328,%edx
+    24ce:	48 89 c6             	mov    %rax,%rsi
+    24d1:	48 8d 05 41 fd ff ff 	lea    -0x2bf(%rip),%rax        # 2219 <thread>
+    24d8:	48 89 c7             	mov    %rax,%rdi
+    24db:	e8 b9 01 00 00       	call   2699 <suthread_create>
+    24e0:	48 89 05 39 31 00 00 	mov    %rax,0x3139(%rip)        # 5620 <th_4>
+    24e7:	48 8d 43 90          	lea    -0x70(%rbx),%rax
+    24eb:	48 89 c2             	mov    %rax,%rdx
+    24ee:	48 89 d0             	mov    %rdx,%rax
+    24f1:	48 c1 e8 03          	shr    $0x3,%rax
+    24f5:	48 05 00 80 ff 7f    	add    $0x7fff8000,%rax
+    24fb:	0f b6 00             	movzbl (%rax),%eax
+    24fe:	84 c0                	test   %al,%al
+    2500:	0f 95 c1             	setne  %cl
+    2503:	3c 03                	cmp    $0x3,%al
+    2505:	0f 9e c0             	setle  %al
+    2508:	21 c8                	and    %ecx,%eax
+    250a:	84 c0                	test   %al,%al
+    250c:	74 08                	je     2516 <main+0x25b>
+    250e:	48 89 d7             	mov    %rdx,%rdi
+    2511:	e8 9a fb ff ff       	call   20b0 <__asan_report_store4@plt>
+    2516:	c7 43 90 05 00 00 00 	movl   $0x5,-0x70(%rbx)
+    251d:	48 8d 43 90          	lea    -0x70(%rbx),%rax
+    2521:	ba 28 23 00 00       	mov    $0x2328,%edx
+    2526:	48 89 c6             	mov    %rax,%rsi
+    2529:	48 8d 05 e9 fc ff ff 	lea    -0x317(%rip),%rax        # 2219 <thread>
+    2530:	48 89 c7             	mov    %rax,%rdi
+    2533:	e8 61 01 00 00       	call   2699 <suthread_create>
+    2538:	48 89 05 21 31 00 00 	mov    %rax,0x3121(%rip)        # 5660 <th_5>
+    253f:	48 8d 43 a0          	lea    -0x60(%rbx),%rax
+    2543:	48 89 c2             	mov    %rax,%rdx
+    2546:	48 89 d0             	mov    %rdx,%rax
+    2549:	48 c1 e8 03          	shr    $0x3,%rax
+    254d:	48 05 00 80 ff 7f    	add    $0x7fff8000,%rax
+    2553:	0f b6 00             	movzbl (%rax),%eax
+    2556:	84 c0                	test   %al,%al
+    2558:	0f 95 c1             	setne  %cl
+    255b:	3c 03                	cmp    $0x3,%al
+    255d:	0f 9e c0             	setle  %al
+    2560:	21 c8                	and    %ecx,%eax
+    2562:	84 c0                	test   %al,%al
+    2564:	74 08                	je     256e <main+0x2b3>
+    2566:	48 89 d7             	mov    %rdx,%rdi
+    2569:	e8 42 fb ff ff       	call   20b0 <__asan_report_store4@plt>
+    256e:	c7 43 a0 06 00 00 00 	movl   $0x6,-0x60(%rbx)
+    2575:	48 8d 43 a0          	lea    -0x60(%rbx),%rax
+    2579:	ba 28 23 00 00       	mov    $0x2328,%edx
+    257e:	48 89 c6             	mov    %rax,%rsi
+    2581:	48 8d 05 91 fc ff ff 	lea    -0x36f(%rip),%rax        # 2219 <thread>
+    2588:	48 89 c7             	mov    %rax,%rdi
+    258b:	e8 09 01 00 00       	call   2699 <suthread_create>
+    2590:	48 89 05 09 31 00 00 	mov    %rax,0x3109(%rip)        # 56a0 <th_6>
+    2597:	48 8d 43 b0          	lea    -0x50(%rbx),%rax
+    259b:	48 89 c2             	mov    %rax,%rdx
+    259e:	48 89 d0             	mov    %rdx,%rax
+    25a1:	48 c1 e8 03          	shr    $0x3,%rax
+    25a5:	48 05 00 80 ff 7f    	add    $0x7fff8000,%rax
+    25ab:	0f b6 00             	movzbl (%rax),%eax
+    25ae:	84 c0                	test   %al,%al
+    25b0:	0f 95 c1             	setne  %cl
+    25b3:	3c 03                	cmp    $0x3,%al
+    25b5:	0f 9e c0             	setle  %al
+    25b8:	21 c8                	and    %ecx,%eax
+    25ba:	84 c0                	test   %al,%al
+    25bc:	74 08                	je     25c6 <main+0x30b>
+    25be:	48 89 d7             	mov    %rdx,%rdi
+    25c1:	e8 ea fa ff ff       	call   20b0 <__asan_report_store4@plt>
+    25c6:	c7 43 b0 07 00 00 00 	movl   $0x7,-0x50(%rbx)
+    25cd:	48 8d 43 b0          	lea    -0x50(%rbx),%rax
+    25d1:	ba 28 23 00 00       	mov    $0x2328,%edx
+    25d6:	48 89 c6             	mov    %rax,%rsi
+    25d9:	48 8d 05 39 fc ff ff 	lea    -0x3c7(%rip),%rax        # 2219 <thread>
+    25e0:	48 89 c7             	mov    %rax,%rdi
+    25e3:	e8 b1 00 00 00       	call   2699 <suthread_create>
+    25e8:	48 89 05 f1 30 00 00 	mov    %rax,0x30f1(%rip)        # 56e0 <th_7>
+    25ef:	48 8d 43 c0          	lea    -0x40(%rbx),%rax
+    25f3:	48 89 c2             	mov    %rax,%rdx
+    25f6:	48 89 d0             	mov    %rdx,%rax
+    25f9:	48 c1 e8 03          	shr    $0x3,%rax
+    25fd:	48 05 00 80 ff 7f    	add    $0x7fff8000,%rax
+    2603:	0f b6 00             	movzbl (%rax),%eax
+    2606:	84 c0                	test   %al,%al
+    2608:	0f 95 c1             	setne  %cl
+    260b:	3c 03                	cmp    $0x3,%al
+    260d:	0f 9e c0             	setle  %al
+    2610:	21 c8                	and    %ecx,%eax
+    2612:	84 c0                	test   %al,%al
+    2614:	74 08                	je     261e <main+0x363>
+    2616:	48 89 d7             	mov    %rdx,%rdi
+    2619:	e8 92 fa ff ff       	call   20b0 <__asan_report_store4@plt>
+    261e:	c7 43 c0 08 00 00 00 	movl   $0x8,-0x40(%rbx)
+    2625:	48 8d 43 c0          	lea    -0x40(%rbx),%rax
+    2629:	ba 28 23 00 00       	mov    $0x2328,%edx
+    262e:	48 89 c6             	mov    %rax,%rsi
+    2631:	48 8d 05 e1 fb ff ff 	lea    -0x41f(%rip),%rax        # 2219 <thread>
+    2638:	48 89 c7             	mov    %rax,%rdi
+    263b:	e8 59 00 00 00       	call   2699 <suthread_create>
+    2640:	48 89 05 d9 30 00 00 	mov    %rax,0x30d9(%rip)        # 5720 <th_8>
+    2647:	b8 00 00 00 00       	mov    $0x0,%eax
+    264c:	e8 da 04 00 00       	call   2b2b <suthread_yield>
+    2651:	eb f4                	jmp    2647 <main+0x38c>
+
+0000000000002653 <_sub_D_00099_0>:
+    2653:	f3 0f 1e fa          	endbr64 
+    2657:	55                   	push   %rbp
+    2658:	48 89 e5             	mov    %rsp,%rbp
+    265b:	be 09 00 00 00       	mov    $0x9,%esi
+    2660:	48 8d 05 39 2a 00 00 	lea    0x2a39(%rip),%rax        # 50a0 <__dso_handle+0x98>
+    2667:	48 89 c7             	mov    %rax,%rdi
+    266a:	e8 61 fa ff ff       	call   20d0 <__asan_unregister_globals@plt>
+    266f:	5d                   	pop    %rbp
+    2670:	c3                   	ret    
+
+0000000000002671 <_sub_I_00099_1>:
+    2671:	f3 0f 1e fa          	endbr64 
+    2675:	55                   	push   %rbp
+    2676:	48 89 e5             	mov    %rsp,%rbp
+    2679:	e8 c2 f9 ff ff       	call   2040 <__asan_init@plt>
+    267e:	e8 8d fa ff ff       	call   2110 <__asan_version_mismatch_check_v8@plt>
+    2683:	be 09 00 00 00       	mov    $0x9,%esi
+    2688:	48 8d 05 11 2a 00 00 	lea    0x2a11(%rip),%rax        # 50a0 <__dso_handle+0x98>
+    268f:	48 89 c7             	mov    %rax,%rdi
+    2692:	e8 49 fa ff ff       	call   20e0 <__asan_register_globals@plt>
+    2697:	5d                   	pop    %rbp
+    2698:	c3                   	ret    
+
+0000000000002699 <suthread_create>:
+    2699:	f3 0f 1e fa          	endbr64 
+    269d:	55                   	push   %rbp
+    269e:	48 89 e5             	mov    %rsp,%rbp
+    26a1:	48 83 ec 40          	sub    $0x40,%rsp
+    26a5:	48 89 7d d8          	mov    %rdi,-0x28(%rbp)
+    26a9:	48 89 75 d0          	mov    %rsi,-0x30(%rbp)
+    26ad:	48 89 55 c8          	mov    %rdx,-0x38(%rbp)
+    26b1:	48 8d 05 36 02 00 00 	lea    0x236(%rip),%rax        # 28ee <start_thread>
+    26b8:	48 89 45 e0          	mov    %rax,-0x20(%rbp)
+    26bc:	be 40 00 00 00       	mov    $0x40,%esi
+    26c1:	bf 01 00 00 00       	mov    $0x1,%edi
+    26c6:	e8 65 f9 ff ff       	call   2030 <calloc@plt>
+    26cb:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+    26cf:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+    26d3:	be 01 00 00 00       	mov    $0x1,%esi
+    26d8:	48 89 c7             	mov    %rax,%rdi
+    26db:	e8 50 f9 ff ff       	call   2030 <calloc@plt>
+    26e0:	48 89 45 f0          	mov    %rax,-0x10(%rbp)
+    26e4:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+    26e8:	48 8d 50 f8          	lea    -0x8(%rax),%rdx
+    26ec:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+    26f0:	48 01 d0             	add    %rdx,%rax
+    26f3:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    26f7:	48 83 65 f8 f0       	andq   $0xfffffffffffffff0,-0x8(%rbp)
+    26fc:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2700:	48 89 c2             	mov    %rax,%rdx
+    2703:	48 c1 ea 03          	shr    $0x3,%rdx
+    2707:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    270e:	0f b6 12             	movzbl (%rdx),%edx
+    2711:	84 d2                	test   %dl,%dl
+    2713:	74 08                	je     271d <suthread_create+0x84>
+    2715:	48 89 c7             	mov    %rax,%rdi
+    2718:	e8 a3 f9 ff ff       	call   20c0 <__asan_report_store8@plt>
+    271d:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2721:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+    2725:	48 89 10             	mov    %rdx,(%rax)
+    2728:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    272c:	48 8b 00             	mov    (%rax),%rax
+    272f:	48 8b 4d e0          	mov    -0x20(%rbp),%rcx
+    2733:	48 89 c2             	mov    %rax,%rdx
+    2736:	48 89 d6             	mov    %rdx,%rsi
+    2739:	48 c1 ee 03          	shr    $0x3,%rsi
+    273d:	48 81 c6 00 80 ff 7f 	add    $0x7fff8000,%rsi
+    2744:	0f b6 36             	movzbl (%rsi),%esi
+    2747:	40 84 f6             	test   %sil,%sil
+    274a:	74 08                	je     2754 <suthread_create+0xbb>
+    274c:	48 89 d7             	mov    %rdx,%rdi
+    274f:	e8 6c f9 ff ff       	call   20c0 <__asan_report_store8@plt>
+    2754:	48 89 08             	mov    %rcx,(%rax)
+    2757:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    275b:	48 8b 00             	mov    (%rax),%rax
+    275e:	48 8d 50 c8          	lea    -0x38(%rax),%rdx
+    2762:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2766:	48 89 10             	mov    %rdx,(%rax)
+    2769:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    276d:	48 83 c0 08          	add    $0x8,%rax
+    2771:	48 89 c2             	mov    %rax,%rdx
+    2774:	48 c1 ea 03          	shr    $0x3,%rdx
+    2778:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    277f:	0f b6 12             	movzbl (%rdx),%edx
+    2782:	84 d2                	test   %dl,%dl
+    2784:	74 08                	je     278e <suthread_create+0xf5>
+    2786:	48 89 c7             	mov    %rax,%rdi
+    2789:	e8 32 f9 ff ff       	call   20c0 <__asan_report_store8@plt>
+    278e:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2792:	48 8b 55 f0          	mov    -0x10(%rbp),%rdx
+    2796:	48 89 50 08          	mov    %rdx,0x8(%rax)
+    279a:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    279e:	48 83 c0 10          	add    $0x10,%rax
+    27a2:	48 89 c2             	mov    %rax,%rdx
+    27a5:	48 c1 ea 03          	shr    $0x3,%rdx
+    27a9:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    27b0:	0f b6 12             	movzbl (%rdx),%edx
+    27b3:	84 d2                	test   %dl,%dl
+    27b5:	74 08                	je     27bf <suthread_create+0x126>
+    27b7:	48 89 c7             	mov    %rax,%rdi
+    27ba:	e8 01 f9 ff ff       	call   20c0 <__asan_report_store8@plt>
+    27bf:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    27c3:	48 8b 55 c8          	mov    -0x38(%rbp),%rdx
+    27c7:	48 89 50 10          	mov    %rdx,0x10(%rax)
+    27cb:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    27cf:	48 83 c0 18          	add    $0x18,%rax
+    27d3:	48 89 c2             	mov    %rax,%rdx
+    27d6:	48 c1 ea 03          	shr    $0x3,%rdx
+    27da:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    27e1:	0f b6 12             	movzbl (%rdx),%edx
+    27e4:	84 d2                	test   %dl,%dl
+    27e6:	74 08                	je     27f0 <suthread_create+0x157>
+    27e8:	48 89 c7             	mov    %rax,%rdi
+    27eb:	e8 d0 f8 ff ff       	call   20c0 <__asan_report_store8@plt>
+    27f0:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    27f4:	48 8b 55 d0          	mov    -0x30(%rbp),%rdx
+    27f8:	48 89 50 18          	mov    %rdx,0x18(%rax)
+    27fc:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2800:	48 83 c0 20          	add    $0x20,%rax
+    2804:	48 89 c2             	mov    %rax,%rdx
+    2807:	48 c1 ea 03          	shr    $0x3,%rdx
+    280b:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    2812:	0f b6 12             	movzbl (%rdx),%edx
+    2815:	84 d2                	test   %dl,%dl
+    2817:	74 08                	je     2821 <suthread_create+0x188>
+    2819:	48 89 c7             	mov    %rax,%rdi
+    281c:	e8 9f f8 ff ff       	call   20c0 <__asan_report_store8@plt>
+    2821:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2825:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+    2829:	48 89 50 20          	mov    %rdx,0x20(%rax)
+    282d:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2831:	48 83 c0 28          	add    $0x28,%rax
+    2835:	48 89 c2             	mov    %rax,%rdx
+    2838:	48 89 d0             	mov    %rdx,%rax
+    283b:	48 c1 e8 03          	shr    $0x3,%rax
+    283f:	48 05 00 80 ff 7f    	add    $0x7fff8000,%rax
+    2845:	0f b6 00             	movzbl (%rax),%eax
+    2848:	84 c0                	test   %al,%al
+    284a:	0f 95 c1             	setne  %cl
+    284d:	3c 03                	cmp    $0x3,%al
+    284f:	0f 9e c0             	setle  %al
+    2852:	21 c8                	and    %ecx,%eax
+    2854:	84 c0                	test   %al,%al
+    2856:	74 08                	je     2860 <suthread_create+0x1c7>
+    2858:	48 89 d7             	mov    %rdx,%rdi
+    285b:	e8 50 f8 ff ff       	call   20b0 <__asan_report_store4@plt>
+    2860:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    2864:	c7 40 28 00 00 00 00 	movl   $0x0,0x28(%rax)
+    286b:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    286f:	48 89 c7             	mov    %rax,%rdi
+    2872:	e8 f4 03 00 00       	call   2c6b <insert>
+    2877:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    287b:	c9                   	leave  
+    287c:	c3                   	ret    
+
+000000000000287d <suthread_yield_to>:
+    287d:	f3 0f 1e fa          	endbr64 
+    2881:	55                   	push   %rbp
+    2882:	48 89 e5             	mov    %rsp,%rbp
+    2885:	48 83 ec 20          	sub    $0x20,%rsp
+    2889:	48 89 7d e8          	mov    %rdi,-0x18(%rbp)
+    288d:	48 8b 05 ac 2a 00 00 	mov    0x2aac(%rip),%rax        # 5340 <current>
+    2894:	48 39 45 e8          	cmp    %rax,-0x18(%rbp)
+    2898:	74 51                	je     28eb <suthread_yield_to+0x6e>
+    289a:	48 8b 05 9f 2a 00 00 	mov    0x2a9f(%rip),%rax        # 5340 <current>
+    28a1:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    28a5:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+    28a9:	48 89 05 90 2a 00 00 	mov    %rax,0x2a90(%rip)        # 5340 <current>
+    28b0:	48 8b 05 89 2a 00 00 	mov    0x2a89(%rip),%rax        # 5340 <current>
+    28b7:	48 89 c2             	mov    %rax,%rdx
+    28ba:	48 89 d1             	mov    %rdx,%rcx
+    28bd:	48 c1 e9 03          	shr    $0x3,%rcx
+    28c1:	48 81 c1 00 80 ff 7f 	add    $0x7fff8000,%rcx
+    28c8:	0f b6 09             	movzbl (%rcx),%ecx
+    28cb:	84 c9                	test   %cl,%cl
+    28cd:	74 08                	je     28d7 <suthread_yield_to+0x5a>
+    28cf:	48 89 d7             	mov    %rdx,%rdi
+    28d2:	e8 89 f7 ff ff       	call   2060 <__asan_report_load8@plt>
+    28d7:	48 8b 10             	mov    (%rax),%rdx
+    28da:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    28de:	48 89 d6             	mov    %rdx,%rsi
+    28e1:	48 89 c7             	mov    %rax,%rdi
+    28e4:	e8 f3 05 00 00       	call   2edc <context_switch>
+    28e9:	eb 01                	jmp    28ec <suthread_yield_to+0x6f>
+    28eb:	90                   	nop
+    28ec:	c9                   	leave  
+    28ed:	c3                   	ret    
+
+00000000000028ee <start_thread>:
+    28ee:	f3 0f 1e fa          	endbr64 
+    28f2:	55                   	push   %rbp
+    28f3:	48 89 e5             	mov    %rsp,%rbp
+    28f6:	48 83 ec 10          	sub    $0x10,%rsp
+    28fa:	48 8b 05 3f 2a 00 00 	mov    0x2a3f(%rip),%rax        # 5340 <current>
+    2901:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    2905:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2909:	48 83 c0 20          	add    $0x20,%rax
+    290d:	48 89 c2             	mov    %rax,%rdx
+    2910:	48 c1 ea 03          	shr    $0x3,%rdx
+    2914:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    291b:	0f b6 12             	movzbl (%rdx),%edx
+    291e:	84 d2                	test   %dl,%dl
+    2920:	74 08                	je     292a <start_thread+0x3c>
+    2922:	48 89 c7             	mov    %rax,%rdi
+    2925:	e8 36 f7 ff ff       	call   2060 <__asan_report_load8@plt>
+    292a:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    292e:	48 8b 50 20          	mov    0x20(%rax),%rdx
+    2932:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2936:	48 83 c0 18          	add    $0x18,%rax
+    293a:	48 89 c1             	mov    %rax,%rcx
+    293d:	48 c1 e9 03          	shr    $0x3,%rcx
+    2941:	48 81 c1 00 80 ff 7f 	add    $0x7fff8000,%rcx
+    2948:	0f b6 09             	movzbl (%rcx),%ecx
+    294b:	84 c9                	test   %cl,%cl
+    294d:	74 08                	je     2957 <start_thread+0x69>
+    294f:	48 89 c7             	mov    %rax,%rdi
+    2952:	e8 09 f7 ff ff       	call   2060 <__asan_report_load8@plt>
+    2957:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    295b:	48 8b 40 18          	mov    0x18(%rax),%rax
+    295f:	48 89 c7             	mov    %rax,%rdi
+    2962:	b8 00 00 00 00       	mov    $0x0,%eax
+    2967:	ff d2                	call   *%rdx
+    2969:	90                   	nop
+    296a:	c9                   	leave  
+    296b:	c3                   	ret    
+
+000000000000296c <sched>:
+    296c:	f3 0f 1e fa          	endbr64 
+    2970:	55                   	push   %rbp
+    2971:	48 89 e5             	mov    %rsp,%rbp
+    2974:	48 8b 05 c5 29 00 00 	mov    0x29c5(%rip),%rax        # 5340 <current>
+    297b:	48 8d 50 28          	lea    0x28(%rax),%rdx
+    297f:	48 89 d1             	mov    %rdx,%rcx
+    2982:	48 89 ca             	mov    %rcx,%rdx
+    2985:	48 c1 ea 03          	shr    $0x3,%rdx
+    2989:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    2990:	0f b6 12             	movzbl (%rdx),%edx
+    2993:	84 d2                	test   %dl,%dl
+    2995:	40 0f 95 c6          	setne  %sil
+    2999:	80 fa 03             	cmp    $0x3,%dl
+    299c:	0f 9e c2             	setle  %dl
+    299f:	21 f2                	and    %esi,%edx
+    29a1:	84 d2                	test   %dl,%dl
+    29a3:	74 08                	je     29ad <sched+0x41>
+    29a5:	48 89 cf             	mov    %rcx,%rdi
+    29a8:	e8 e3 f6 ff ff       	call   2090 <__asan_report_load4@plt>
+    29ad:	8b 40 28             	mov    0x28(%rax),%eax
+    29b0:	83 f8 01             	cmp    $0x1,%eax
+    29b3:	75 40                	jne    29f5 <sched+0x89>
+    29b5:	48 8b 05 84 29 00 00 	mov    0x2984(%rip),%rax        # 5340 <current>
+    29bc:	48 8d 50 28          	lea    0x28(%rax),%rdx
+    29c0:	48 89 d1             	mov    %rdx,%rcx
+    29c3:	48 89 ca             	mov    %rcx,%rdx
+    29c6:	48 c1 ea 03          	shr    $0x3,%rdx
+    29ca:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    29d1:	0f b6 12             	movzbl (%rdx),%edx
+    29d4:	84 d2                	test   %dl,%dl
+    29d6:	40 0f 95 c6          	setne  %sil
+    29da:	80 fa 03             	cmp    $0x3,%dl
+    29dd:	0f 9e c2             	setle  %dl
+    29e0:	21 f2                	and    %esi,%edx
+    29e2:	84 d2                	test   %dl,%dl
+    29e4:	74 08                	je     29ee <sched+0x82>
+    29e6:	48 89 cf             	mov    %rcx,%rdi
+    29e9:	e8 c2 f6 ff ff       	call   20b0 <__asan_report_store4@plt>
+    29ee:	c7 40 28 00 00 00 00 	movl   $0x0,0x28(%rax)
+    29f5:	48 8b 05 44 29 00 00 	mov    0x2944(%rip),%rax        # 5340 <current>
+    29fc:	48 8d 50 38          	lea    0x38(%rax),%rdx
+    2a00:	48 89 d1             	mov    %rdx,%rcx
+    2a03:	48 c1 e9 03          	shr    $0x3,%rcx
+    2a07:	48 81 c1 00 80 ff 7f 	add    $0x7fff8000,%rcx
+    2a0e:	0f b6 09             	movzbl (%rcx),%ecx
+    2a11:	84 c9                	test   %cl,%cl
+    2a13:	74 08                	je     2a1d <sched+0xb1>
+    2a15:	48 89 d7             	mov    %rdx,%rdi
+    2a18:	e8 43 f6 ff ff       	call   2060 <__asan_report_load8@plt>
+    2a1d:	48 8b 40 38          	mov    0x38(%rax),%rax
+    2a21:	48 8d 50 28          	lea    0x28(%rax),%rdx
+    2a25:	48 89 d1             	mov    %rdx,%rcx
+    2a28:	48 89 ca             	mov    %rcx,%rdx
+    2a2b:	48 c1 ea 03          	shr    $0x3,%rdx
+    2a2f:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    2a36:	0f b6 12             	movzbl (%rdx),%edx
+    2a39:	84 d2                	test   %dl,%dl
+    2a3b:	40 0f 95 c6          	setne  %sil
+    2a3f:	80 fa 03             	cmp    $0x3,%dl
+    2a42:	0f 9e c2             	setle  %dl
+    2a45:	21 f2                	and    %esi,%edx
+    2a47:	84 d2                	test   %dl,%dl
+    2a49:	74 08                	je     2a53 <sched+0xe7>
+    2a4b:	48 89 cf             	mov    %rcx,%rdi
+    2a4e:	e8 5d f6 ff ff       	call   20b0 <__asan_report_store4@plt>
+    2a53:	c7 40 28 01 00 00 00 	movl   $0x1,0x28(%rax)
+    2a5a:	48 8b 05 df 28 00 00 	mov    0x28df(%rip),%rax        # 5340 <current>
+    2a61:	48 8d 50 38          	lea    0x38(%rax),%rdx
+    2a65:	48 89 d1             	mov    %rdx,%rcx
+    2a68:	48 c1 e9 03          	shr    $0x3,%rcx
+    2a6c:	48 81 c1 00 80 ff 7f 	add    $0x7fff8000,%rcx
+    2a73:	0f b6 09             	movzbl (%rcx),%ecx
+    2a76:	84 c9                	test   %cl,%cl
+    2a78:	74 08                	je     2a82 <sched+0x116>
+    2a7a:	48 89 d7             	mov    %rdx,%rdi
+    2a7d:	e8 de f5 ff ff       	call   2060 <__asan_report_load8@plt>
+    2a82:	48 8b 40 38          	mov    0x38(%rax),%rax
+    2a86:	48 89 c7             	mov    %rax,%rdi
+    2a89:	e8 ef fd ff ff       	call   287d <suthread_yield_to>
+    2a8e:	48 8b 05 ab 28 00 00 	mov    0x28ab(%rip),%rax        # 5340 <current>
+    2a95:	48 8d 50 30          	lea    0x30(%rax),%rdx
+    2a99:	48 89 d1             	mov    %rdx,%rcx
+    2a9c:	48 c1 e9 03          	shr    $0x3,%rcx
+    2aa0:	48 81 c1 00 80 ff 7f 	add    $0x7fff8000,%rcx
+    2aa7:	0f b6 09             	movzbl (%rcx),%ecx
+    2aaa:	84 c9                	test   %cl,%cl
+    2aac:	74 08                	je     2ab6 <sched+0x14a>
+    2aae:	48 89 d7             	mov    %rdx,%rdi
+    2ab1:	e8 aa f5 ff ff       	call   2060 <__asan_report_load8@plt>
+    2ab6:	48 8b 40 30          	mov    0x30(%rax),%rax
+    2aba:	48 8d 50 28          	lea    0x28(%rax),%rdx
+    2abe:	48 89 d1             	mov    %rdx,%rcx
+    2ac1:	48 89 ca             	mov    %rcx,%rdx
+    2ac4:	48 c1 ea 03          	shr    $0x3,%rdx
+    2ac8:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    2acf:	0f b6 12             	movzbl (%rdx),%edx
+    2ad2:	84 d2                	test   %dl,%dl
+    2ad4:	40 0f 95 c6          	setne  %sil
+    2ad8:	80 fa 03             	cmp    $0x3,%dl
+    2adb:	0f 9e c2             	setle  %dl
+    2ade:	21 f2                	and    %esi,%edx
+    2ae0:	84 d2                	test   %dl,%dl
+    2ae2:	74 08                	je     2aec <sched+0x180>
+    2ae4:	48 89 cf             	mov    %rcx,%rdi
+    2ae7:	e8 a4 f5 ff ff       	call   2090 <__asan_report_load4@plt>
+    2aec:	8b 40 28             	mov    0x28(%rax),%eax
+    2aef:	83 f8 02             	cmp    $0x2,%eax
+    2af2:	75 34                	jne    2b28 <sched+0x1bc>
+    2af4:	48 8b 05 45 28 00 00 	mov    0x2845(%rip),%rax        # 5340 <current>
+    2afb:	48 8d 50 30          	lea    0x30(%rax),%rdx
+    2aff:	48 89 d1             	mov    %rdx,%rcx
+    2b02:	48 c1 e9 03          	shr    $0x3,%rcx
+    2b06:	48 81 c1 00 80 ff 7f 	add    $0x7fff8000,%rcx
+    2b0d:	0f b6 09             	movzbl (%rcx),%ecx
+    2b10:	84 c9                	test   %cl,%cl
+    2b12:	74 08                	je     2b1c <sched+0x1b0>
+    2b14:	48 89 d7             	mov    %rdx,%rdi
+    2b17:	e8 44 f5 ff ff       	call   2060 <__asan_report_load8@plt>
+    2b1c:	48 8b 40 30          	mov    0x30(%rax),%rax
+    2b20:	48 89 c7             	mov    %rax,%rdi
+    2b23:	e8 1d 02 00 00       	call   2d45 <release>
+    2b28:	90                   	nop
+    2b29:	5d                   	pop    %rbp
+    2b2a:	c3                   	ret    
+
+0000000000002b2b <suthread_yield>:
+    2b2b:	f3 0f 1e fa          	endbr64 
+    2b2f:	55                   	push   %rbp
+    2b30:	48 89 e5             	mov    %rsp,%rbp
+    2b33:	b8 00 00 00 00       	mov    $0x0,%eax
+    2b38:	e8 2f fe ff ff       	call   296c <sched>
+    2b3d:	90                   	nop
+    2b3e:	5d                   	pop    %rbp
+    2b3f:	c3                   	ret    
+
+0000000000002b40 <suthread_exit>:
+    2b40:	f3 0f 1e fa          	endbr64 
+    2b44:	55                   	push   %rbp
+    2b45:	48 89 e5             	mov    %rsp,%rbp
+    2b48:	48 8b 05 f1 27 00 00 	mov    0x27f1(%rip),%rax        # 5340 <current>
+    2b4f:	48 8d 15 8a 27 00 00 	lea    0x278a(%rip),%rdx        # 52e0 <suthread_main>
+    2b56:	48 39 d0             	cmp    %rdx,%rax
+    2b59:	75 53                	jne    2bae <suthread_exit+0x6e>
+    2b5b:	eb 0a                	jmp    2b67 <suthread_exit+0x27>
+    2b5d:	b8 00 00 00 00       	mov    $0x0,%eax
+    2b62:	e8 d9 ff ff ff       	call   2b40 <suthread_exit>
+    2b67:	48 8b 05 d2 27 00 00 	mov    0x27d2(%rip),%rax        # 5340 <current>
+    2b6e:	48 8d 50 38          	lea    0x38(%rax),%rdx
+    2b72:	48 89 d1             	mov    %rdx,%rcx
+    2b75:	48 c1 e9 03          	shr    $0x3,%rcx
+    2b79:	48 81 c1 00 80 ff 7f 	add    $0x7fff8000,%rcx
+    2b80:	0f b6 09             	movzbl (%rcx),%ecx
+    2b83:	84 c9                	test   %cl,%cl
+    2b85:	74 08                	je     2b8f <suthread_exit+0x4f>
+    2b87:	48 89 d7             	mov    %rdx,%rdi
+    2b8a:	e8 d1 f4 ff ff       	call   2060 <__asan_report_load8@plt>
+    2b8f:	48 8b 40 38          	mov    0x38(%rax),%rax
+    2b93:	48 8d 15 46 27 00 00 	lea    0x2746(%rip),%rdx        # 52e0 <suthread_main>
+    2b9a:	48 39 d0             	cmp    %rdx,%rax
+    2b9d:	75 be                	jne    2b5d <suthread_exit+0x1d>
+    2b9f:	e8 fc f4 ff ff       	call   20a0 <__asan_handle_no_return@plt>
+    2ba4:	bf 00 00 00 00       	mov    $0x0,%edi
+    2ba9:	e8 c2 f4 ff ff       	call   2070 <exit@plt>
+    2bae:	48 8b 05 8b 27 00 00 	mov    0x278b(%rip),%rax        # 5340 <current>
+    2bb5:	48 8d 50 28          	lea    0x28(%rax),%rdx
+    2bb9:	48 89 d1             	mov    %rdx,%rcx
+    2bbc:	48 89 ca             	mov    %rcx,%rdx
+    2bbf:	48 c1 ea 03          	shr    $0x3,%rdx
+    2bc3:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    2bca:	0f b6 12             	movzbl (%rdx),%edx
+    2bcd:	84 d2                	test   %dl,%dl
+    2bcf:	40 0f 95 c6          	setne  %sil
+    2bd3:	80 fa 03             	cmp    $0x3,%dl
+    2bd6:	0f 9e c2             	setle  %dl
+    2bd9:	21 f2                	and    %esi,%edx
+    2bdb:	84 d2                	test   %dl,%dl
+    2bdd:	74 08                	je     2be7 <suthread_exit+0xa7>
+    2bdf:	48 89 cf             	mov    %rcx,%rdi
+    2be2:	e8 c9 f4 ff ff       	call   20b0 <__asan_report_store4@plt>
+    2be7:	c7 40 28 02 00 00 00 	movl   $0x2,0x28(%rax)
+    2bee:	b8 00 00 00 00       	mov    $0x0,%eax
+    2bf3:	e8 74 fd ff ff       	call   296c <sched>
+    2bf8:	e8 a3 f4 ff ff       	call   20a0 <__asan_handle_no_return@plt>
+    2bfd:	48 8d 05 bc 05 00 00 	lea    0x5bc(%rip),%rax        # 31c0 <__PRETTY_FUNCTION__.0>
+    2c04:	48 89 c1             	mov    %rax,%rcx
+    2c07:	ba 68 00 00 00       	mov    $0x68,%edx
+    2c0c:	48 8d 05 2d 05 00 00 	lea    0x52d(%rip),%rax        # 3140 <_IO_stdin_used+0x140>
+    2c13:	48 89 c6             	mov    %rax,%rsi
+    2c16:	48 8d 05 63 05 00 00 	lea    0x563(%rip),%rax        # 3180 <_IO_stdin_used+0x180>
+    2c1d:	48 89 c7             	mov    %rax,%rdi
+    2c20:	e8 5b f4 ff ff       	call   2080 <__assert_fail@plt>
+
+0000000000002c25 <_sub_D_00099_0>:
+    2c25:	f3 0f 1e fa          	endbr64 
+    2c29:	55                   	push   %rbp
+    2c2a:	48 89 e5             	mov    %rsp,%rbp
+    2c2d:	be 05 00 00 00       	mov    $0x5,%esi
+    2c32:	48 8d 05 87 27 00 00 	lea    0x2787(%rip),%rax        # 53c0 <current+0x80>
+    2c39:	48 89 c7             	mov    %rax,%rdi
+    2c3c:	e8 8f f4 ff ff       	call   20d0 <__asan_unregister_globals@plt>
+    2c41:	5d                   	pop    %rbp
+    2c42:	c3                   	ret    
+
+0000000000002c43 <_sub_I_00099_1>:
+    2c43:	f3 0f 1e fa          	endbr64 
+    2c47:	55                   	push   %rbp
+    2c48:	48 89 e5             	mov    %rsp,%rbp
+    2c4b:	e8 f0 f3 ff ff       	call   2040 <__asan_init@plt>
+    2c50:	e8 bb f4 ff ff       	call   2110 <__asan_version_mismatch_check_v8@plt>
+    2c55:	be 05 00 00 00       	mov    $0x5,%esi
+    2c5a:	48 8d 05 5f 27 00 00 	lea    0x275f(%rip),%rax        # 53c0 <current+0x80>
+    2c61:	48 89 c7             	mov    %rax,%rdi
+    2c64:	e8 77 f4 ff ff       	call   20e0 <__asan_register_globals@plt>
+    2c69:	5d                   	pop    %rbp
+    2c6a:	c3                   	ret    
+
+0000000000002c6b <insert>:
+    2c6b:	f3 0f 1e fa          	endbr64 
+    2c6f:	55                   	push   %rbp
+    2c70:	48 89 e5             	mov    %rsp,%rbp
+    2c73:	48 83 ec 10          	sub    $0x10,%rsp
+    2c77:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    2c7b:	48 8d 05 8e 26 00 00 	lea    0x268e(%rip),%rax        # 5310 <suthread_main+0x30>
+    2c82:	48 89 c2             	mov    %rax,%rdx
+    2c85:	48 c1 ea 03          	shr    $0x3,%rdx
+    2c89:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    2c90:	0f b6 12             	movzbl (%rdx),%edx
+    2c93:	84 d2                	test   %dl,%dl
+    2c95:	74 08                	je     2c9f <insert+0x34>
+    2c97:	48 89 c7             	mov    %rax,%rdi
+    2c9a:	e8 c1 f3 ff ff       	call   2060 <__asan_report_load8@plt>
+    2c9f:	48 8b 05 6a 26 00 00 	mov    0x266a(%rip),%rax        # 5310 <suthread_main+0x30>
+    2ca6:	48 8d 50 38          	lea    0x38(%rax),%rdx
+    2caa:	48 89 d1             	mov    %rdx,%rcx
+    2cad:	48 c1 e9 03          	shr    $0x3,%rcx
+    2cb1:	48 81 c1 00 80 ff 7f 	add    $0x7fff8000,%rcx
+    2cb8:	0f b6 09             	movzbl (%rcx),%ecx
+    2cbb:	84 c9                	test   %cl,%cl
+    2cbd:	74 08                	je     2cc7 <insert+0x5c>
+    2cbf:	48 89 d7             	mov    %rdx,%rdi
+    2cc2:	e8 f9 f3 ff ff       	call   20c0 <__asan_report_store8@plt>
+    2cc7:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+    2ccb:	48 89 50 38          	mov    %rdx,0x38(%rax)
+    2ccf:	48 8b 15 3a 26 00 00 	mov    0x263a(%rip),%rdx        # 5310 <suthread_main+0x30>
+    2cd6:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2cda:	48 83 c0 30          	add    $0x30,%rax
+    2cde:	48 89 c1             	mov    %rax,%rcx
+    2ce1:	48 c1 e9 03          	shr    $0x3,%rcx
+    2ce5:	48 81 c1 00 80 ff 7f 	add    $0x7fff8000,%rcx
+    2cec:	0f b6 09             	movzbl (%rcx),%ecx
+    2cef:	84 c9                	test   %cl,%cl
+    2cf1:	74 08                	je     2cfb <insert+0x90>
+    2cf3:	48 89 c7             	mov    %rax,%rdi
+    2cf6:	e8 c5 f3 ff ff       	call   20c0 <__asan_report_store8@plt>
+    2cfb:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2cff:	48 89 50 30          	mov    %rdx,0x30(%rax)
+    2d03:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2d07:	48 83 c0 38          	add    $0x38,%rax
+    2d0b:	48 89 c2             	mov    %rax,%rdx
+    2d0e:	48 c1 ea 03          	shr    $0x3,%rdx
+    2d12:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    2d19:	0f b6 12             	movzbl (%rdx),%edx
+    2d1c:	84 d2                	test   %dl,%dl
+    2d1e:	74 08                	je     2d28 <insert+0xbd>
+    2d20:	48 89 c7             	mov    %rax,%rdi
+    2d23:	e8 98 f3 ff ff       	call   20c0 <__asan_report_store8@plt>
+    2d28:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2d2c:	48 8d 15 ad 25 00 00 	lea    0x25ad(%rip),%rdx        # 52e0 <suthread_main>
+    2d33:	48 89 50 38          	mov    %rdx,0x38(%rax)
+    2d37:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2d3b:	48 89 05 ce 25 00 00 	mov    %rax,0x25ce(%rip)        # 5310 <suthread_main+0x30>
+    2d42:	90                   	nop
+    2d43:	c9                   	leave  
+    2d44:	c3                   	ret    
+
+0000000000002d45 <release>:
+    2d45:	f3 0f 1e fa          	endbr64 
+    2d49:	55                   	push   %rbp
+    2d4a:	48 89 e5             	mov    %rsp,%rbp
+    2d4d:	48 83 ec 10          	sub    $0x10,%rsp
+    2d51:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+    2d55:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2d59:	48 83 c0 30          	add    $0x30,%rax
+    2d5d:	48 89 c2             	mov    %rax,%rdx
+    2d60:	48 c1 ea 03          	shr    $0x3,%rdx
+    2d64:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    2d6b:	0f b6 12             	movzbl (%rdx),%edx
+    2d6e:	84 d2                	test   %dl,%dl
+    2d70:	74 08                	je     2d7a <release+0x35>
+    2d72:	48 89 c7             	mov    %rax,%rdi
+    2d75:	e8 e6 f2 ff ff       	call   2060 <__asan_report_load8@plt>
+    2d7a:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2d7e:	48 8b 40 30          	mov    0x30(%rax),%rax
+    2d82:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+    2d86:	48 83 c2 38          	add    $0x38,%rdx
+    2d8a:	48 89 d1             	mov    %rdx,%rcx
+    2d8d:	48 c1 e9 03          	shr    $0x3,%rcx
+    2d91:	48 81 c1 00 80 ff 7f 	add    $0x7fff8000,%rcx
+    2d98:	0f b6 09             	movzbl (%rcx),%ecx
+    2d9b:	84 c9                	test   %cl,%cl
+    2d9d:	74 08                	je     2da7 <release+0x62>
+    2d9f:	48 89 d7             	mov    %rdx,%rdi
+    2da2:	e8 b9 f2 ff ff       	call   2060 <__asan_report_load8@plt>
+    2da7:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+    2dab:	48 8b 4a 38          	mov    0x38(%rdx),%rcx
+    2daf:	48 8d 50 38          	lea    0x38(%rax),%rdx
+    2db3:	48 89 d6             	mov    %rdx,%rsi
+    2db6:	48 c1 ee 03          	shr    $0x3,%rsi
+    2dba:	48 81 c6 00 80 ff 7f 	add    $0x7fff8000,%rsi
+    2dc1:	0f b6 36             	movzbl (%rsi),%esi
+    2dc4:	40 84 f6             	test   %sil,%sil
+    2dc7:	74 08                	je     2dd1 <release+0x8c>
+    2dc9:	48 89 d7             	mov    %rdx,%rdi
+    2dcc:	e8 ef f2 ff ff       	call   20c0 <__asan_report_store8@plt>
+    2dd1:	48 89 48 38          	mov    %rcx,0x38(%rax)
+    2dd5:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2dd9:	48 8b 40 38          	mov    0x38(%rax),%rax
+    2ddd:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
+    2de1:	48 8b 4a 30          	mov    0x30(%rdx),%rcx
+    2de5:	48 8d 50 30          	lea    0x30(%rax),%rdx
+    2de9:	48 89 d6             	mov    %rdx,%rsi
+    2dec:	48 c1 ee 03          	shr    $0x3,%rsi
+    2df0:	48 81 c6 00 80 ff 7f 	add    $0x7fff8000,%rsi
+    2df7:	0f b6 36             	movzbl (%rsi),%esi
+    2dfa:	40 84 f6             	test   %sil,%sil
+    2dfd:	74 08                	je     2e07 <release+0xc2>
+    2dff:	48 89 d7             	mov    %rdx,%rdi
+    2e02:	e8 b9 f2 ff ff       	call   20c0 <__asan_report_store8@plt>
+    2e07:	48 89 48 30          	mov    %rcx,0x30(%rax)
+    2e0b:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2e0f:	48 83 c0 18          	add    $0x18,%rax
+    2e13:	48 89 c2             	mov    %rax,%rdx
+    2e16:	48 c1 ea 03          	shr    $0x3,%rdx
+    2e1a:	48 81 c2 00 80 ff 7f 	add    $0x7fff8000,%rdx
+    2e21:	0f b6 12             	movzbl (%rdx),%edx
+    2e24:	84 d2                	test   %dl,%dl
+    2e26:	74 08                	je     2e30 <release+0xeb>
+    2e28:	48 89 c7             	mov    %rax,%rdi
+    2e2b:	e8 30 f2 ff ff       	call   2060 <__asan_report_load8@plt>
+    2e30:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2e34:	48 8b 50 18          	mov    0x18(%rax),%rdx
+    2e38:	48 89 d0             	mov    %rdx,%rax
+    2e3b:	48 89 c1             	mov    %rax,%rcx
+    2e3e:	48 c1 e9 03          	shr    $0x3,%rcx
+    2e42:	48 81 c1 00 80 ff 7f 	add    $0x7fff8000,%rcx
+    2e49:	0f b6 09             	movzbl (%rcx),%ecx
+    2e4c:	84 c9                	test   %cl,%cl
+    2e4e:	40 0f 95 c7          	setne  %dil
+    2e52:	48 89 c6             	mov    %rax,%rsi
+    2e55:	83 e6 07             	and    $0x7,%esi
+    2e58:	83 c6 03             	add    $0x3,%esi
+    2e5b:	40 38 ce             	cmp    %cl,%sil
+    2e5e:	0f 9d c1             	setge  %cl
+    2e61:	21 f9                	and    %edi,%ecx
+    2e63:	84 c9                	test   %cl,%cl
+    2e65:	74 08                	je     2e6f <release+0x12a>
+    2e67:	48 89 c7             	mov    %rax,%rdi
+    2e6a:	e8 21 f2 ff ff       	call   2090 <__asan_report_load4@plt>
+    2e6f:	8b 02                	mov    (%rdx),%eax
+    2e71:	89 c6                	mov    %eax,%esi
+    2e73:	48 8d 05 c6 03 00 00 	lea    0x3c6(%rip),%rax        # 3240 <__PRETTY_FUNCTION__.0+0x80>
+    2e7a:	48 89 c7             	mov    %rax,%rdi
+    2e7d:	b8 00 00 00 00       	mov    $0x0,%eax
+    2e82:	e8 79 f2 ff ff       	call   2100 <printf@plt>
+    2e87:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    2e8b:	48 89 c7             	mov    %rax,%rdi
+    2e8e:	e8 5d f2 ff ff       	call   20f0 <free@plt>
+    2e93:	90                   	nop
+    2e94:	c9                   	leave  
+    2e95:	c3                   	ret    
+
+0000000000002e96 <_sub_D_00099_0>:
+    2e96:	f3 0f 1e fa          	endbr64 
+    2e9a:	55                   	push   %rbp
+    2e9b:	48 89 e5             	mov    %rsp,%rbp
+    2e9e:	be 01 00 00 00       	mov    $0x1,%esi
+    2ea3:	48 8d 05 56 26 00 00 	lea    0x2656(%rip),%rax        # 5500 <current+0x1c0>
+    2eaa:	48 89 c7             	mov    %rax,%rdi
+    2ead:	e8 1e f2 ff ff       	call   20d0 <__asan_unregister_globals@plt>
+    2eb2:	5d                   	pop    %rbp
+    2eb3:	c3                   	ret    
+
+0000000000002eb4 <_sub_I_00099_1>:
+    2eb4:	f3 0f 1e fa          	endbr64 
+    2eb8:	55                   	push   %rbp
+    2eb9:	48 89 e5             	mov    %rsp,%rbp
+    2ebc:	e8 7f f1 ff ff       	call   2040 <__asan_init@plt>
+    2ec1:	e8 4a f2 ff ff       	call   2110 <__asan_version_mismatch_check_v8@plt>
+    2ec6:	be 01 00 00 00       	mov    $0x1,%esi
+    2ecb:	48 8d 05 2e 26 00 00 	lea    0x262e(%rip),%rax        # 5500 <current+0x1c0>
+    2ed2:	48 89 c7             	mov    %rax,%rdi
+    2ed5:	e8 06 f2 ff ff       	call   20e0 <__asan_register_globals@plt>
+    2eda:	5d                   	pop    %rbp
+    2edb:	c3                   	ret    
+
+0000000000002edc <context_switch>:
+    2edc:	9c                   	pushf  
+    2edd:	53                   	push   %rbx
+    2ede:	55                   	push   %rbp
+    2edf:	41 54                	push   %r12
+    2ee1:	41 55                	push   %r13
+    2ee3:	41 56                	push   %r14
+    2ee5:	41 57                	push   %r15
+    2ee7:	48 89 27             	mov    %rsp,(%rdi)
+    2eea:	48 89 f4             	mov    %rsi,%rsp
+    2eed:	41 5f                	pop    %r15
+    2eef:	41 5e                	pop    %r14
+    2ef1:	41 5d                	pop    %r13
+    2ef3:	41 5c                	pop    %r12
+    2ef5:	5d                   	pop    %rbp
+    2ef6:	5b                   	pop    %rbx
+    2ef7:	9d                   	popf   
+    2ef8:	c3                   	ret    
