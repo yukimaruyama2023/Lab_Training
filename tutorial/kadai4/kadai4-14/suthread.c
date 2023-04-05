@@ -94,17 +94,16 @@ void suthread_yield()
 void suthread_exit()
 {
 
-    if (current == &suthread_main)
-    {
-        while (current->next != &suthread_main)
-            suthread_yield();
-        exit(0);
-    }
-    else
-    {
-        current->state = SUTHREAD_TERMINATING;
-        sched();
-    }
+    // if (current == &suthread_main)
+    // {
+    //     printf("hey");
+    //     while (current->next != &suthread_main)
+    //         suthread_yield();
+    //     exit(0);
+    // }
+
+    current->state = SUTHREAD_TERMINATING;
+    sched();
 
     assert(false);
 }
